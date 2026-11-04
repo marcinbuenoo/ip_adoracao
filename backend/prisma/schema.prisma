@@ -19,4 +19,35 @@ model Song {
   chords String? @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  setlistItems SetlistItem[]
+}
+
+enum EventType {
+  WORSHIP
+  REHEARSAL
+}
+
+model MinistryEvent {
+  id        String        @id @default(uuid())
+  title     String
+  type      EventType
+  startsAt  DateTime
+  location  String?
+  notes     String?       @db.Text
+  setlist   SetlistItem[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model SetlistItem {
+  id       String        @id @default(uuid())
+  eventId  String
+  songId   String
+  position Int
+  key      String?
+
+  event MinistryEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  song  Song          @relation(fields: [songId], references: [id], onDelete: Restrict)
+
+  @@unique([eventId, position])
 }

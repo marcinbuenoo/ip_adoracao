@@ -1,4 +1,5 @@
 import express from "express";
+import eventsRouter from "./routes/events.routes.ts";
 import songsRouter from "./routes/songs.routes.ts";
 
 const app = express();
@@ -10,6 +11,7 @@ app.get("/health", async (req, res) => {
 });
 
 app.use("/songs", songsRouter);
+app.use("/events", eventsRouter);
 
 app.listen(3000, () => {
     console.log("Servidor rodando em http://localhost:3000");
