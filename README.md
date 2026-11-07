@@ -89,6 +89,12 @@ Base local: `http://localhost:3000`
 | `DELETE` | `/songs/:id` | Exclui música |
 | `GET` | `/events` | Lista eventos e seus repertórios |
 | `POST` | `/events` | Cadastra culto ou ensaio |
+| `GET` | `/events/:eventId` | Busca evento e repertório pelo ID |
+| `PATCH` | `/events/:eventId` | Atualiza campos do evento |
+| `DELETE` | `/events/:eventId` | Exclui evento e seus itens de repertório |
+| `POST` | `/events/:eventId/setlist` | Adiciona música ao repertório |
+| `PATCH` | `/events/:eventId/setlist/:itemId` | Altera posição ou tom da música no repertório |
+| `DELETE` | `/events/:eventId/setlist/:itemId` | Remove música do repertório |
 
 Os campos opcionais de música são `artist`, `key` e `chords`. Para eventos, envie `title`, `type` (`WORSHIP` ou `REHEARSAL`) e `startsAt`; `location` e `notes` são opcionais.
 
