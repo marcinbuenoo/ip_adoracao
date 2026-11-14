@@ -51,3 +51,27 @@ model SetlistItem {
 
   @@unique([eventId, position])
 }
+
+enum UserRole {
+  MEMBER
+  LEADER
+  ADMIN
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  REJECTED
+}
+
+model User {
+  id        String     @id @default(uuid())
+  googleSub String     @unique
+  email     String     @unique
+  name      String
+  picture   String?
+  role      UserRole   @default(MEMBER)
+  status    UserStatus @default(PENDING)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
